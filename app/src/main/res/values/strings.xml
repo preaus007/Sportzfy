@@ -1,0 +1,397 @@
+<resources>
+    <string name="app_name">Sportzfy</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="sign_up_title_01">Glad to\nMeet You!</string>
+    <string name="policy">By registering, you agreed with the Application policy</string>
+
+    <string name="result">%1$s %2$f</string>
+    <string name="back">back</string>
+    <string name="create_account">Create\nAccount</string>
+    <string name="registration_subTitle">Sign up to start a new journey.</string>
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="user_name">User name</string>
+    <string name="full_name">Full name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="don_t_have_an_account">Don\'t have an account</string>
+    <string name="log_in">Log in</string>
+    <string name="remember_me">Remember me</string>
+    <string name="recover_password">Recover Password</string>
+    <string name="use_registered_email_which_you_provide_while_n_signing_up">Use registered email, which you provide while \n signing up...</string>
+    <string name="send">Send</string>
+    <string name="hello">Hello, </string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="find_me">Find Me</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
+    <string name="browser">Browser</string>
+    <string name="blog">Blog</string>
+    <string name="classify">Classify</string>
+    <string name="bmi">BMI</string>
+    <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="forget_password">Forget Password</string>
+
+    <string-array name="array_indian_states">
+        <item>Select Your State</item>
+        <item>Andaman and Nicobar Islands</item>
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chandigarh</item>
+        <item>Chhattisgarh</item>
+        <item>Dadra and Nagar Haveli</item>
+        <item>Daman and Diu</item>
+        <item>Delhi</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu and Kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Ladakh</item>
+        <item>Lakshadweep</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Orissa</item>
+        <item>Puducherry</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttarakhand</item>
+        <item>Uttar Pradesh</item>
+        <item>West Bengal</item>
+    </string-array>
+
+    <string-array name="array_default_districts">
+        <item>Select Your District</item>
+    </string-array>
+
+    <string-array name="array_andhra_pradesh_districts">
+        <item>Select Your District</item>
+        <item>Anantapur</item>
+        <item>Chittoor</item>
+        <item>East Godavari</item>
+        <item>Guntur</item>
+        <item>Kadapa</item>
+    </string-array>
+
+    <string-array name="array_arunachal_pradesh_districts">
+        <item>Select Your District</item>
+        <item>Anjaw</item>
+        <item>Siang</item>
+        <item>Changlang</item>
+        <item>Dibang Valley</item>
+        <item>East Kameng</item>
+    </string-array>
+
+    <string-array name="array_assam_districts">
+        <item>Select Your District</item>
+        <item>Bajali</item>
+        <item>Baksa</item>
+        <item>Barpeta</item>
+        <item>Biswanath</item>
+        <item>Bongaigaon</item>
+    </string-array>
+
+    <string-array name="array_bihar_districts">
+        <item>Select Your District</item>
+        <item>Araria</item>
+        <item>Arwal</item>
+        <item>Aurangabad</item>
+        <item>Banka</item>
+        <item>Begusarai</item>
+    </string-array>
+
+    <string-array name="array_chhattisgarh_districts">
+        <item>Select Your District</item>
+        <item>Balod</item>
+        <item>Balrampur Ramanujganj</item>
+        <item>Bastar</item>
+        <item>Bemetara</item>
+        <item>Bijapur</item>
+    </string-array>
+
+    <string-array name="array_goa_districts">
+        <item>Select Your District</item>
+        <item>North Goa</item>
+        <item>South Goa</item>
+    </string-array>
+
+    <string-array name="array_gujarat_districts">
+        <item>Select Your District</item>
+        <item>Ahmedabad</item>
+        <item>Amreli</item>
+        <item>Anand</item>
+        <item>Aravalli</item>
+        <item>Banaskantha</item>
+    </string-array>
+
+    <string-array name="array_haryana_districts">
+        <item>Select Your District</item>
+        <item>Ambala</item>
+        <item>Bhiwani</item>
+        <item>Charkhi Dadri</item>
+        <item>Faridabad</item>
+        <item>Fatehabad</item>
+    </string-array>
+
+    <string-array name="array_himachal_pradesh_districts">
+        <item>Select Your District</item>
+        <item>Bilaspur</item>
+        <item>Chamba</item>
+        <item>Hamirpur</item>
+        <item>Kangra</item>
+        <item>Kinnaur</item>
+    </string-array>
+
+    <string-array name="array_jammu_kashmir_districts">
+        <item>Select Your District</item>
+        <item>Anantnag</item>
+        <item>Bandipora</item>
+        <item>Baramulla</item>
+        <item>Budgam</item>
+        <item>Doda</item>
+    </string-array>
+
+    <string-array name="array_jharkhand_districts">
+        <item>Select Your District</item>
+        <item>Bokaro</item>
+        <item>Chatra</item>
+        <item>Deoghar</item>
+        <item>Dhanbad</item>
+        <item>Dumka</item>
+    </string-array>
+
+    <string-array name="array_karnataka_districts">
+        <item>Select Your District</item>
+        <item>Bagalkot</item>
+        <item>Bangalore Rural</item>
+        <item>Bangalore Urban</item>
+        <item>Belgaum</item>
+        <item>Bellary</item>
+    </string-array>
+
+    <string-array name="array_kerala_districts">
+        <item>Select Your District</item>
+        <item>Alappuzha</item>
+        <item>Ernakulam</item>
+        <item>Idukki</item>
+        <item>Kannur</item>
+        <item>Kasaragod</item>
+    </string-array>
+
+    <string-array name="array_madhya_pradesh_districts">
+        <item>Select Your District</item>
+        <item>Agar Malwa</item>
+        <item>Alirajpur</item>
+        <item>Anuppur</item>
+        <item>Ashoknagar</item>
+        <item>Balaghat</item>
+
+    </string-array>
+
+    <string-array name="array_maharashtra_districts">
+        <item>Select Your District</item>
+        <item>Ahmednagar</item>
+        <item>Akola</item>
+        <item>Amravati</item>
+        <item>Aurangabad</item>
+        <item>Beed</item>
+        <item>Bhandara</item>
+        <item>Buldhana</item>
+        <item>Chandrapur</item>
+    </string-array>
+
+    <string-array name="array_manipur_districts">
+        <item>Select Your District</item>
+        <item>Bishnupur</item>
+        <item>Chandel</item>
+        <item>Churachandpur</item>
+        <item>Imphal East</item>
+    </string-array>
+
+    <string-array name="array_meghalaya_districts">
+        <item>Select Your District</item>
+        <item>East Garo Hills</item>
+        <item>East Jaintia Hills</item>
+        <item>East Khasi Hills</item>
+        <item>North Garo Hills</item>
+    </string-array>
+
+    <string-array name="array_mizoram_districts">
+        <item>Select Your District</item>
+        <item>Aizawl</item>
+        <item>Champhai</item>
+        <item>Hnahthial</item>
+        <item>Khawzawl</item>
+    </string-array>
+
+    <string-array name="array_nagaland_districts">
+        <item>Select Your District</item>
+        <item>Dimapur</item>
+        <item>Kiphire</item>
+        <item>Kohima</item>
+    </string-array>
+
+    <string-array name="array_odisha_districts">
+        <item>Select Your District</item>
+        <item>Angul</item>
+        <item>Balangir</item>
+        <item>Balasore</item>
+        <item>Bargarh</item>
+        <item>Bhadrak</item>
+        <item>Boudh</item>
+    </string-array>
+
+    <string-array name="array_punjab_districts">
+        <item>Select Your District</item>
+        <item>Amritsar</item>
+        <item>Barnala</item>
+        <item>Bathinda</item>
+        <item>Faridkot</item>
+    </string-array>
+
+    <string-array name="array_rajasthan_districts">
+        <item>Select Your District</item>
+        <item>Ajmer</item>
+        <item>Alwar</item>
+        <item>Banswara</item>
+        <item>Baran</item>
+        <item>Barmer</item>
+    </string-array>
+
+    <string-array name="array_sikkim_districts">
+        <item>Select Your District</item>
+        <item>East Sikkim</item>
+        <item>North Sikkim</item>
+        <item>South Sikkim</item>
+        <item>West Sikkim</item>
+    </string-array>
+
+    <string-array name="array_tamil_nadu_districts">
+        <item>Select Your District</item>
+        <item>Ariyalur</item>
+        <item>Chengalpattu</item>
+        <item>Chennai</item>
+        <item>Coimbatore</item>
+        <item>Cuddalore</item>
+    </string-array>
+
+    <string-array name="array_telangana_districts">
+        <item>Select Your District</item>
+        <item>Adilabad</item>
+        <item>Bhadradri Kothagudem</item>
+        <item>Hyderabad</item>
+        <item>Jagtial</item>
+        <item>Jangaon</item>
+
+    </string-array>
+
+    <string-array name="array_tripura_districts">
+        <item>Select Your District</item>
+        <item>Dhalai</item>
+        <item>Gomati</item>
+        <item>Khowai</item>
+        <item>North Tripura</item>
+        <item>Sepahijala</item>
+        <item>South Tripura</item>
+        <item>Unakoti</item>
+        <item>West Tripura</item>
+    </string-array>
+
+    <string-array name="array_uttar_pradesh_districts">
+        <item>Select Your District</item>
+        <item>Agra</item>
+        <item>Aligarh</item>
+        <item>Prayagraj</item>
+        <item>Ambedkar Nagar</item>
+        <item>Amethi</item>
+        <item>Amroha</item>
+    </string-array>
+
+    <string-array name="array_uttarakhand_districts">
+        <item>Select Your District</item>
+        <item>Almora</item>
+        <item>Bageshwar</item>
+        <item>Chamoli</item>
+        <item>Champawat</item>
+        <item>Dehradun</item>
+        <item>Haridwar</item>
+    </string-array>
+
+    <string-array name="array_west_bengal_districts">
+        <item>Select Your District</item>
+        <item>Alipurduar</item>
+        <item>Bankura</item>
+        <item>Birbhum</item>
+        <item>Cooch Behar</item>
+        <item>Dakshin Dinajpur</item>
+        <item>Darjeeling</item>
+        <item>Hooghly</item>
+    </string-array>
+
+    <string-array name="array_andaman_nicobar_districts">
+        <item>Select Your District</item>
+        <item>Nicobar</item>
+        <item>North Middle Andaman</item>
+        <item>South Andaman</item>
+    </string-array>
+
+    <string-array name="array_chandigarh_districts">
+        <item>Chandigarh</item>
+    </string-array>
+
+    <string-array name="array_dadra_nagar_haveli_districts">
+        <item>Dadra Nagar Haveli</item>
+    </string-array>
+
+    <string-array name="array_daman_diu_districts">
+        <item>Select Your District</item>
+        <item>Daman</item>
+        <item>Diu</item>
+    </string-array>
+
+    <string-array name="array_delhi_districts">
+        <item>Select Your District</item>
+        <item>Central Delhi</item>
+        <item>East Delhi</item>
+        <item>New Delhi</item>
+    </string-array>
+
+    <string-array name="array_lakshadweep_districts">
+        <item>Lakshadweep</item>
+    </string-array>
+
+    <string-array name="array_ladakh_districts">
+        <item>Select Your District</item>
+        <item>Kargil</item>
+        <item>Leh</item>
+    </string-array>
+
+    <string-array name="array_puducherry_districts">
+        <item>Select Your District</item>
+        <item>Karaikal</item>
+        <item>Mahe</item>
+        <item>Puducherry</item>
+        <item>Yanam</item>
+    </string-array>
+</resources>

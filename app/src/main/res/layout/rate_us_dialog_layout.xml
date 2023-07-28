@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        android:padding="@dimen/_10mdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_100mdp"
+                android:background="@color/colorPrimary"/>
+
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-75dp"
+                android:background="@drawable/rounded_back_white_stroke"
+                android:padding="20dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_back_white_solid" />
+
+                <ImageView
+                    android:id="@+id/emotions"
+                    android:layout_centerInParent="true"
+                    android:layout_width="@dimen/_50mdp"
+                    android:layout_height="@dimen/_50mdp"
+                    android:src="@drawable/confused"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rating"
+                android:fontFamily="@font/chewy"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_24font_mdp"
+                android:layout_gravity="center"/>
+
+            <androidx.appcompat.widget.AppCompatRatingBar
+                android:id="@+id/user_rating"
+                style="@style/MyRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="@string/app_name" />
+
+            <EditText
+                android:id="@+id/review"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_80mdp"
+                android:layout_gravity="center"
+                android:background="@drawable/white_box"
+                android:hint="Say something..."
+                android:gravity="top"
+                android:padding="@dimen/_10mdp"
+                android:textSize="@dimen/_12font_mdp"
+                android:maxLines="5"
+                android:fontFamily="@font/ubuntu"
+                android:layout_marginStart="@dimen/_15mdp"
+                android:layout_marginEnd="@dimen/_15mdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/later"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40mdp"
+                    android:text="May Be, later"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:layout_marginEnd="@dimen/_10mdp"
+                    android:background="#0F000000"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40mdp"
+                    android:text="Submit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:background="@color/colorSecondary"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

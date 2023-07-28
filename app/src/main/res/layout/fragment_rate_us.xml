@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.RateUsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rating_RV"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginStart="@dimen/_10mdp"
+        android:layout_marginTop="@dimen/_5mdp"
+        android:layout_marginEnd="@dimen/_10mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/rating_post" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/star"
+        android:layout_width="@dimen/_80mdp"
+        android:layout_height="@dimen/_80mdp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="@dimen/_10mdp"
+        android:layout_marginBottom="@dimen/_55mdp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/star" />
+
+    <LinearLayout
+        android:id="@+id/pagination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15mdp"
+        android:layout_marginBottom="@dimen/_10mdp"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/prev_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/ubuntu"
+            android:text="prev"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10font_mdp"/>
+
+        <TextView
+            android:id="@+id/page_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_48mdp"
+            android:fontFamily="@font/chewy"
+            android:textSize="@dimen/_20mdp"
+            android:text="1"
+            android:padding="@dimen/_10mdp"/>
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/ubuntu"
+            android:text="NEXT"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10font_mdp"/>
+
+    </LinearLayout>
+
+</FrameLayout>

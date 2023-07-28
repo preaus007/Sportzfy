@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.SettingsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_gravity="center"
+            style="@style/viewParent.headerText"
+            android:text="Settings" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileCircleImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/colorPrimary"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:id="@+id/fullNameTextView"
+                style="@style/viewParent.headerText"
+                android:layout_alignTop="@+id/profileCircleImageView"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/profileCircleImageView"
+                android:text="Touhedul Islam"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/userNameTextView"
+                style="@style/viewParent.headerText"
+                android:text="username"
+                android:textSize="16sp"
+                android:textColor="#5D5C5C"
+                android:layout_below="@id/fullNameTextView"
+                android:layout_toRightOf="@id/profileCircleImageView"/>
+
+        </RelativeLayout>
+
+        <Switch
+            android:id="@+id/darkModeSwitch"
+            style="@style/settingsText"
+            android:drawableLeft="@drawable/ic_dark_mode"
+            android:text="Dark Mode"
+            android:minHeight="48dp"/>
+
+        <TextView
+            style="@style/viewParent.headerText.settingsMiniTitle"
+            android:text="Profile"/>
+
+        <TextView
+            android:id="@+id/edit_profile"
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:drawableLeft="@drawable/ic_edit_profile"
+            android:text="Edit Profile"
+            android:minHeight="48dp"/>
+
+        <TextView
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:drawableLeft="@drawable/ic_edit_password"
+            android:layout_marginTop="10dp"
+            android:text="Change Password"
+            android:minHeight="48dp"/>
+
+        <TextView
+            style="@style/viewParent.headerText.settingsMiniTitle"
+            android:text="Notifications"/>
+
+        <Switch
+            style="@style/settingsText"
+            android:checked="true"
+            android:drawableLeft="@drawable/ic_notifications"
+            android:text="Notifications"
+            android:minHeight="48dp"/>
+
+        <TextView
+            style="@style/viewParent.headerText.settingsMiniTitle"
+            android:text="Regional"/>
+
+        <TextView
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:drawableLeft="@drawable/ic_languages"
+            android:text="Language"
+            android:minHeight="48dp"/>
+
+        <TextView
+            android:id="@+id/sign_out"
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:drawableLeft="@drawable/ic_logout"
+            android:text="Logout"
+            android:minHeight="48dp"/>
+
+        <TextView
+            style="@style/viewParent.headerText.settingsMiniTitle"
+            android:text="App version 1.0.0"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+</FrameLayout>

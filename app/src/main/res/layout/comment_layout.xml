@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImg"
+        android:layout_width="@dimen/_40mdp"
+        android:layout_height="@dimen/_40mdp"
+        android:src="@drawable/ic_launcher_background"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="@dimen/_2mdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:fontFamily="@font/ubuntu"
+        android:text="User name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12font_mdp"
+        app:layout_constraintBottom_toBottomOf="@+id/profileImg"
+        app:layout_constraintStart_toEndOf="@+id/profileImg"
+        app:layout_constraintTop_toTopOf="@+id/profileImg"
+        app:layout_constraintVertical_bias="0.22000003" />
+
+    <TextView
+        android:id="@+id/post_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:fontFamily="@font/ubuntu"
+        android:text="Just now"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10font_mdp"
+        app:layout_constraintStart_toEndOf="@+id/profileImg"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comment"
+        android:fontFamily="@font/ubuntu"
+        android:textSize="@dimen/_10font_mdp"
+        android:textColor="@color/colorGray"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:layout_marginStart="@dimen/_10mdp"
+        android:layout_marginEnd="@dimen/_10mdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_time" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1mdp"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/_3mdp"
+        android:layout_marginBottom="@dimen/_3mdp"
+        app:layout_constraintTop_toBottomOf="@+id/comment"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
