@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.sportzfy.R;
+import com.example.sportzfy.helperClasses.CustomLoading;
 import com.example.sportzfy.sessions.SessionManager;
 import com.example.sportzfy.tabs.Dashboard;
 import com.google.android.material.textfield.TextInputEditText;
@@ -38,6 +39,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     SessionManager sessionManager;
     private FirebaseAuth mAuth;
 
+    CustomLoading dialog;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         forgetPassword = findViewById(R.id.forget_password);
         signUp = findViewById(R.id.sign_up);
         rememberMe = findViewById(R.id.remember_me);
+        dialog = new CustomLoading(SignIn.this);
 
         sessionManager = new SessionManager(SignIn.this, SessionManager.REMEMBER_ME_SESSION);
         if(sessionManager.checkRememberMe()){
@@ -69,6 +73,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
     private void userLogin() {
 
+        dialog.startLoadingDialog("Singing in...");
+
         String email = Objects.requireNonNull(emailEditText.getText()).toString().trim();
         String password = Objects.requireNonNull(passwordEditText.getText()).toString().trim();
 
@@ -84,12 +90,17 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
                             Toasty.success(getApplicationContext(), "User login successfully", Toast.LENGTH_SHORT, true).show();
+                            dialog.dismissDialog();
                             startActivity(new Intent(getApplicationContext(), Dashboard.class));
                             finish();
                         } else {
+                            dialog.dismissDialog();
                             Toasty.error(getApplicationContext(), "SignIn Failed" + task.getException(), Toast.LENGTH_SHORT, true).show();
                         }
                     });
+        } else {
+            Toasty.error(getApplicationContext(), "SignIn Failed!", Toast.LENGTH_SHORT, true).show();
+            dialog.dismissDialog();
         }
     }
 

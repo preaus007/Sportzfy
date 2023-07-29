@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sportzfy.R;
+import com.example.sportzfy.helperClasses.CustomLoading;
 import com.example.sportzfy.models.PostModel;
 import com.example.sportzfy.models.UserModel;
 import com.example.sportzfy.services.BlogActivity;
@@ -64,7 +65,7 @@ public class CreatePostActivity extends AppCompatActivity {
     SessionManager sessionManager;
     HashMap<String, String> userDetails;
 
-    Dialog dialog;
+    CustomLoading dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +130,7 @@ public class CreatePostActivity extends AppCompatActivity {
             startActivityForResult(intent, GALLERY_IMAGE_CODE);
         });
 
-        dialog = new Dialog(CreatePostActivity.this);
+        dialog = new CustomLoading(CreatePostActivity.this);
 
         post.setOnClickListener(v -> uploadPost());
 
@@ -137,7 +138,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
     private void uploadPost() {
 
-        dialog.startLoadingDialog();
+        dialog.startLoadingDialog("Post Uploading...");
 
         final String timeStamp = String.valueOf(System.currentTimeMillis());
         final String description = postDescription.getText().toString();

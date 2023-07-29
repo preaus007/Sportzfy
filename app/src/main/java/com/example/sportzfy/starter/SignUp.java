@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sportzfy.R;
+import com.example.sportzfy.helperClasses.CustomLoading;
 import com.example.sportzfy.models.UserModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -25,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.Objects;
 
@@ -42,6 +45,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
 
+    CustomLoading dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +61,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
         signUp = findViewById(R.id.sign_up);
         signIn = findViewById(R.id.sign_in);
 
+        dialog = new CustomLoading(SignUp.this);
+
         mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         reference = database.getReference("users");
@@ -69,10 +76,18 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
             }
         });
 
-        signUp.setOnClickListener(view -> userRegistration());
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userRegistration();
+            }
+        });
     }
 
     private void userRegistration() {
+
+        dialog.startLoadingDialog("User Ragistring...");
+
         String regName = Objects.requireNonNull(fullNameEditText.getText()).toString();
         String regUsername = Objects.requireNonNull(userNameEditText.getText()).toString();
         String regEmail = Objects.requireNonNull(emailEditText.getText()).toString();
@@ -89,12 +104,17 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
                             String id = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
                             reference.child(id).setValue(user);
                             Toasty.success(getApplicationContext(), "Registration Successful.", Toast.LENGTH_SHORT, true).show();
+                            dialog.dismissDialog();
                             startActivity(new Intent(getApplicationContext(), SignIn.class));
                             finish();
                         } else {
                             Toasty.error(getApplicationContext(), "SignUp Failed" + task.getException(), Toast.LENGTH_SHORT, true).show();
+                            dialog.dismissDialog();
                         }
                     });
+        } else {
+            Toasty.error(getApplicationContext(), "Registration Failed.", Toast.LENGTH_SHORT, true).show();
+            dialog.dismissDialog();
         }
     }
 

@@ -11,7 +11,6 @@ import androidx.fragment.app.DialogFragment;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -28,8 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sportzfy.R;
-import com.example.sportzfy.helperActivity.Dialog;
 import com.example.sportzfy.helperClasses.ApiServices;
+import com.example.sportzfy.helperClasses.CustomLoading;
 import com.example.sportzfy.helperClasses.District;
 import com.example.sportzfy.helperClasses.DistrictResponse;
 import com.example.sportzfy.models.PostModel;
@@ -85,7 +83,7 @@ public class UserProfile extends AppCompatActivity implements DatePickerDialog.O
 
     private ImageView editName, editPhone, editAddress, editDOB;
 
-    Dialog dialog;
+    CustomLoading dialog;
 
     String _image, _password;
 
@@ -121,7 +119,7 @@ public class UserProfile extends AppCompatActivity implements DatePickerDialog.O
         storage = FirebaseStorage.getInstance();
         database = FirebaseDatabase.getInstance();
 
-        dialog = new Dialog(UserProfile.this);
+        dialog = new CustomLoading(UserProfile.this);
 
         sessionManager = new SessionManager(UserProfile.this, USER_LOGIN_SESSION);
         userDetails = sessionManager.getUsersDetailsFromSession();
@@ -286,7 +284,7 @@ public class UserProfile extends AppCompatActivity implements DatePickerDialog.O
 
     private void saveProfilePhoto() {
         final StorageReference storageReference = storage.getReference().child("profile_photo").child(mAuth.getUid());
-        dialog.startLoadingDialog();
+        dialog.startLoadingDialog("Saving profile...");
 
         storageReference.putFile(image_uri).addOnSuccessListener(taskSnapshot -> {
             Toasty.success(getApplicationContext(), "Image saved", Toast.LENGTH_SHORT, true).show();
