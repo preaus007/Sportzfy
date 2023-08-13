@@ -10,8 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +30,7 @@ import com.example.sportzfy.fragments.SettingsFragment;
 import com.example.sportzfy.models.UserModel;
 import com.example.sportzfy.sessions.SessionManager;
 import com.example.sportzfy.starter.SignIn;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +56,8 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
     SessionManager sessionManager;
     HashMap<String, String> userDetails;
+
+    private final static String ROOT_TAG_FRAGMENT = "ROOT_TAG_FRAGMENT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,26 +148,33 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
         switch (item.getItemId()) {
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                ft.add(R.id.fragment_container, new HomeFragment());
+                fm.popBackStack(ROOT_TAG_FRAGMENT, FragmentManager.POP_BACK_STACK_INCLUSIVE );
+                ft.addToBackStack(ROOT_TAG_FRAGMENT);
                 break;
             case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+                ft.replace(R.id.fragment_container, new SettingsFragment()).addToBackStack( null );
                 break;
             case R.id.nav_map:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FindMeFragment()).commit();
+                ft.replace(R.id.fragment_container, new FindMeFragment()).addToBackStack( null );
                 break;
             case R.id.nav_rating:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RateUsFragment()).commit();
+                ft.replace(R.id.fragment_container, new RateUsFragment()).addToBackStack( null );
                 break;
             case R.id.nav_about:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
+                ft.replace(R.id.fragment_container, new AboutFragment()).addToBackStack( null );
                 break;
             case R.id.nav_logout:
                 signOut();
                 break;
         }
+        ft.commit();
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -16,7 +17,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,12 +35,13 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Locale;
 
 public class ClassifyActivity extends AppCompatActivity {
 
     TextView result;
     ImageView image;
-    AppCompatButton predict, shareResult;
+    AppCompatButton predict, say_it;
     Bitmap bitmap;
     int imageSize = 224;
 
@@ -46,6 +50,9 @@ public class ClassifyActivity extends AppCompatActivity {
     private static final int GALLERY_IMAGE_CODE = 200;
     private static final int CAMERA_IMAGE_CODE = 300;
 
+    private TextToSpeech mTTS;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +72,7 @@ public class ClassifyActivity extends AppCompatActivity {
         image = findViewById(R.id.image);
         predict = findViewById(R.id.predict);
         result = findViewById(R.id.result);
-        shareResult = findViewById(R.id.share_result);
-        shareResult.setVisibility(View.GONE);
+        say_it = findViewById(R.id.say_it);
 
         getPermission();
 
@@ -81,14 +87,46 @@ public class ClassifyActivity extends AppCompatActivity {
             }
         });
 
-        shareResult.setOnClickListener(new View.OnClickListener() {
+        mTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
-            public void onClick(View v) {
-                if(!TextUtils.isEmpty(result.getText().toString())){
-                    Toast.makeText(ClassifyActivity.this, result.getText().toString(), Toast.LENGTH_SHORT).show();
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mTTS.setLanguage(Locale.ENGLISH);
+
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "Language not supported");
+                    } else {
+                        say_it.setEnabled(true);
+                    }
+                } else {
+                    Log.e("TTS", "Initialization failed");
                 }
             }
         });
+
+        say_it.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sayIt();
+            }
+        });
+    }
+
+    private void sayIt() {
+
+        String[] text = result.getText().toString().split(" ");
+
+        mTTS.speak(text[0], TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mTTS != null) {
+            mTTS.stop();
+            mTTS.shutdown();
+        }
+        super.onDestroy();
     }
 
     void getPermission(){
@@ -204,7 +242,7 @@ public class ClassifyActivity extends AppCompatActivity {
 
             String final_result = getString(R.string.result, classes[max], maxProbability);
             result.setText(final_result);
-            shareResult.setVisibility(View.VISIBLE);
+            say_it.setVisibility(View.VISIBLE);
 
             // Releases model resources if no longer used.
             model.close();

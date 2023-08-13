@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -121,34 +122,29 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
             @Override
             public void onClick(View v) {
                 if(!liked[0]) {
-                    holder.likes.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            FirebaseDatabase.getInstance().getReference()
-                                    .child("posts")
-                                    .child(model.getPostId())
-                                    .child("likes")
-                                    .child(FirebaseAuth.getInstance().getUid())
-                                    .setValue(true)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                            FirebaseDatabase.getInstance().getReference()
-                                                    .child("posts")
-                                                    .child(model.getPostId())
-                                                    .child("postLikes")
-                                                    .setValue(model.getPostLikes() + 1)
-                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                        @Override
-                                                        public void onSuccess(Void unused) {
-                                                            liked[0] = true;
-                                                            holder.likes.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_fill, 0, 0, 0);
-                                                        }
-                                                    });
-                                        }
-                                    });
-                        }
-                    });
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("posts")
+                            .child(model.getPostId())
+                            .child("likes")
+                            .child(FirebaseAuth.getInstance().getUid())
+                            .setValue(true)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    FirebaseDatabase.getInstance().getReference()
+                                            .child("posts")
+                                            .child(model.getPostId())
+                                            .child("postLikes")
+                                            .setValue(model.getPostLikes() + 1)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    liked[0] = true;
+                                                    holder.likes.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_fill, 0, 0, 0);
+                                                }
+                                            });
+                                }
+                            });
                 }
                 else {
                     FirebaseDatabase.getInstance().getReference()

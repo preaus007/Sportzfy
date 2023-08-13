@@ -39,7 +39,6 @@ public class CommentActivity extends AppCompatActivity {
     ImageView postImage, postComment;
     CircleImageView userImage;
     TextView userName, postDescription;
-    TextView likes_count, comments_count;
     EditText comments;
     RecyclerView commentRV;
 
@@ -76,8 +75,6 @@ public class CommentActivity extends AppCompatActivity {
         userImage = findViewById(R.id.profileImg);
         userName = findViewById(R.id.userName);
         postDescription = findViewById(R.id.post_description);
-        likes_count = findViewById(R.id.like);
-        comments_count = findViewById(R.id.comment);
         comments = findViewById(R.id.edit_comment);
         commentRV = findViewById(R.id.comment_RV);
 
@@ -94,57 +91,10 @@ public class CommentActivity extends AppCompatActivity {
 
         getUserImageAndName();
 
-        handleLikes();
-
         postComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                CommentModel comment = new CommentModel();
-                comment.setComment(comments.getText().toString());
-                comment.setCommentedAt(new Date().getTime());
-                comment.setCommentedBy(FirebaseAuth.getInstance().getUid());
-
-                database.getReference()
-                        .child("posts")
-                        .child(postId)
-                        .child("comments")
-                        .push()
-                        .setValue(comment).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                database.getReference()
-                                        .child("posts")
-                                        .child(postId)
-                                        .child("postComments")
-                                        .addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                int commentCount = 0;
-                                                if(snapshot.exists()){
-                                                    commentCount = snapshot.getValue(Integer.class);
-                                                }
-                                                database.getReference()
-                                                        .child("posts")
-                                                        .child(postId)
-                                                        .child("postComments")
-                                                        .setValue(commentCount + 1)
-                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                            @Override
-                                                            public void onSuccess(Void unused) {
-                                                                comments.setText("");
-                                                                Toast.makeText(CommentActivity.this, "Commented", Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        });
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                            }
-                                        });
-                            }
-                        });
+                handleComments();
             }
         });
 
@@ -176,56 +126,56 @@ public class CommentActivity extends AppCompatActivity {
 
     }
 
-    private void handleLikes() {
-        FirebaseDatabase.getInstance().getReference()
-                .child("posts")
-                .child(postId)
-                .child("likes")
-                .child(FirebaseAuth.getInstance().getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-                            likes_count.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_fill, 0, 0, 0);
+    private void handleComments() {
+        if(!comments.getText().toString().isEmpty()){
+            CommentModel comment = new CommentModel();
+            comment.setComment(comments.getText().toString());
+            comment.setCommentedAt(new Date().getTime());
+            comment.setCommentedBy(FirebaseAuth.getInstance().getUid());
+
+            database.getReference()
+                    .child("posts")
+                    .child(postId)
+                    .child("comments")
+                    .push()
+                    .setValue(comment).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            database.getReference()
+                                    .child("posts")
+                                    .child(postId)
+                                    .child("postComments")
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            int commentCount = 0;
+                                            if (snapshot.exists()) {
+                                                commentCount = snapshot.getValue(Integer.class);
+                                            }
+                                            database.getReference()
+                                                    .child("posts")
+                                                    .child(postId)
+                                                    .child("postComments")
+                                                    .setValue(commentCount + 1)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            comments.setText("");
+                                                            Toast.makeText(CommentActivity.this, "Commented", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
                         }
-                        else{
-                            likes_count.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    FirebaseDatabase.getInstance().getReference()
-                                            .child("posts")
-                                            .child(postId)
-                                            .child("likes")
-                                            .child(FirebaseAuth.getInstance().getUid())
-                                            .setValue(true)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-                                                    FirebaseDatabase.getInstance().getReference()
-                                                            .child("posts")
-                                                            .child(postId)
-                                                            .child("postLikes")
-                                                            .setValue( post.getPostLikes() + 1)
-                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                @Override
-                                                                public void onSuccess(Void unused) {
-                                                                    likes_count.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_fill, 0, 0, 0);
-                                                                }
-                                                            });
-                                                }
-                                            });
-                                }
-                            });
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
+                    });
+        } else {
+            Toast.makeText(this, "no comments", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void getUserImageAndName() {
@@ -266,8 +216,6 @@ public class CommentActivity extends AppCompatActivity {
                                     .placeholder(R.drawable.ic_launcher_background)
                                     .into(postImage);
                             postDescription.setText(post.getPostDescription());
-                            likes_count.setText(post.getPostLikes()+"");
-                            comments_count.setText(post.getPostComments()+"");
                         }
                     }
 

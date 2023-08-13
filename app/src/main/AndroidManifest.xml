@@ -18,6 +18,13 @@
         android:theme="@style/Theme.Sportzfy"
         tools:targetApi="31">
         <activity
+            android:name=".starter.SignIn"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".services.BrowserActivity"
             android:exported="false">
             <meta-data
@@ -33,13 +40,6 @@
         </activity>
         <activity
             android:name=".helperActivity.CommentActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".services.MapActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -100,7 +100,7 @@
             android:value="AIzaSyCzttzPI3Mq6ZPMJ191gdV922Gdzielg_A" />
 
         <activity
-            android:name=".starter.SignIn"
+            android:name=".starter.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
